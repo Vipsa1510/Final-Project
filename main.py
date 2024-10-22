@@ -1,13 +1,17 @@
 import streamlit as st
 from langchain_utils import invoke_chain
 import re
+import os 
 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 st.title("The Knowledge Catalyst")
 
 if "openai_model" not in st.session_state:
-    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-    st.session_state["openai_model"] = OPENAI_API_KEY
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY_2")
+    st.session_state["openai_model"] = "gpt-4o-mini"
 
 # Initialize chat history
 if "messages" not in st.session_state:

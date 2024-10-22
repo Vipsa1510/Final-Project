@@ -46,11 +46,15 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.example_selectors import SemanticSimilarityExampleSelector
 from langchain_openai import OpenAIEmbeddings
 import streamlit as st
+import os 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 @st.cache_resource
 def get_example_selector():
     try:
-        embeddings = OpenAIEmbeddings()
+        embeddings = OpenAIEmbeddings(api_key=os.getenv('OPENAI_API_KEY_2'))
         example_selector = SemanticSimilarityExampleSelector.from_examples(
             examples,
             embeddings,

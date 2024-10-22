@@ -6,7 +6,7 @@ db_password = os.getenv("db_password")
 db_host = os.getenv("db_host")
 db_name = os.getenv("db_name")
 
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY_2")
 print(OPENAI_API_KEY)
 
 
@@ -26,14 +26,19 @@ from langchain_openai import ChatOpenAI
 from table_details import table_chain as select_table
 from prompts import final_prompt, answer_prompt
 import streamlit as st
+import os 
+from dotenv import load_dotenv
 
+load_dotenv()
+
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY_2')
 
 @st.cache_resource
 def get_chain():
     print("Creating chain")
     db = SQLDatabase.from_uri(
     f"postgresql://{db_user}:{db_password}@{db_host}/{db_name}")    
-    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, api_key=OPENAI_API_KEY)
     generate_query = create_sql_query_chain(llm, db, final_prompt)
     execute_query = QuerySQLDataBaseTool(db=db)
     rephrase_answer = answer_prompt | llm | StrOutputParser()
