@@ -6,7 +6,8 @@ import re
 st.title("The Knowledge Catalyst")
 
 if "openai_model" not in st.session_state:
-    st.session_state["openai_model"] = "gpt-4o-mini"
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    st.session_state["openai_model"] = OPENAI_API_KEY
 
 # Initialize chat history
 if "messages" not in st.session_state:
