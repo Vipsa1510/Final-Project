@@ -1,0 +1,7 @@
+openai
+langchain
+pymysql
+faiss-cpu
+langchain_openai
+langchain_community
+streamlit
