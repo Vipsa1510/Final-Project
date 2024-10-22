@@ -1,11 +1,12 @@
 import os
+from dotenv import load_dotenv 
+load_dotenv()
+db_user = os.getenv("db_user")
+db_password = os.getenv("db_password")
+db_host = os.getenv("db_host")
+db_name = os.getenv("db_name")
 
-db_user = "anuj"
-db_password = "anuj12345"
-db_host = "llm-chatbot.c50ig264sy6n.us-east-1.rds.amazonaws.com"
-db_name = "llm-chatbot"
-
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 print(OPENAI_API_KEY)
 
 
